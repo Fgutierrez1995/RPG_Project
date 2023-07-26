@@ -13,8 +13,9 @@ public:
 	* @params health The health of the character.
 	* @params attackPower The attack power of the character.
 	* @params defense The defense level of the character.
+	* @params combatLevel The combat level of the character.
 	*/
-	Character(int health, int attackPower, int defense);
+	Character(int health, int attackPower, int defense, int combatLevel);
 
 	/*
 	* @brief Default Destructor.
@@ -24,7 +25,7 @@ public:
 	// Pure Virtual functions for common character actions.
 	virtual void attack(Character& target) = 0;
 	virtual void defend(int incomingDage) = 0;
-	virtual void useAbility() = 0;
+	virtual void useAbility(Character& target) = 0;
 	virtual void heal(int amount) = 0;
 	virtual void levelUp() = 0;
 	virtual void displayInfo() const = 0;
@@ -47,6 +48,12 @@ public:
 	*/
 	void setDefenseLevel(int defense);
 
+	/*
+	* @breif Sets the combat level of the character.
+	* @param combatLevel The combatLevel assigned to the character.
+	*/
+	void setCombatLevel(int combatLevel);
+
 	/** @brief Returns the health of the character.*/
 	int getHealth() const;
 
@@ -56,9 +63,13 @@ public:
 	/** @brief Returns the defense level of the character.*/
 	int getDefenseLevel() const;
 
+	/** @brief Returns the combat level of the character.*/
+	int getCombatLevel() const;
+
 private:
 	int health_ = 0;
 	int attackPower_ = 0;
 	int defense_ = 0;
+	int combatLevel_ = 1;
 
 };
