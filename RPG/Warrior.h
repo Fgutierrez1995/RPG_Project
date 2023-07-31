@@ -1,6 +1,7 @@
 #pragma once
 #include "Character.h"
 #include <iostream>
+#include <memory>
 
 
 class Warrior : public Character {
@@ -28,6 +29,7 @@ public:
 	* @parmas target The character target that is under attack.
 	*/
 	virtual void attack(Character& target) override;
+
 
 	/*
 	* @brief Method to simulate a Warrior object using his special ability on a Character target.

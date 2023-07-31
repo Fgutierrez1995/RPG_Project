@@ -6,7 +6,7 @@ Warrior::Warrior(int attackPower, int defense, const std::string& name) :
 // Method to simulate Warrior attacking another Character Target.
 void Warrior::attack(Character& target) {
 	std::cout << getName() << " attacked " << target.getName() << "!!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .30)));
+	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .5)));
 
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
@@ -16,10 +16,11 @@ void Warrior::attack(Character& target) {
 	}
 }
 
+
 // Method to simulate Warrior attacking with is special Ability at a Character Target.
 void Warrior::useAbility(Character& target) {
-	std::cout << getName() << " used his special ability, Unleashing the Fury of a Thousand Suns!!!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower() * 1.5));
+	std::cout << getName() << " used special ability, Unleashing the Fury of a Thousand Suns!!!\n\n";
+	target.setHealth(target.getHealth() - (getAttackPower() * 2));
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
 		setExperience(getExperience() + 250);
