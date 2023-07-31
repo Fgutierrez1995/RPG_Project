@@ -6,7 +6,7 @@ Mage::Mage(int attackPower, int defense, const std::string& name) :
 // Method to simulate mage attacking another character target.
 void Mage::attack(Character& target) {
 	std::cout << getName() << " attacked " << target.getName() << "!!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .30)));
+	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .5)));
 
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
@@ -18,7 +18,7 @@ void Mage::attack(Character& target) {
 
 // Method to simulate mage attacking with is special Ability at a Character Target.
 void Mage::useAbility(Character& target) {
-	std::cout << getName() << " used his special ability, Channeling Arcane Brilliance: Unleash the Power of the Elements!!!!\n\n";
+	std::cout << getName() << " used special ability, Channeling Arcane Brilliance: Unleash the Power of the Elements!!!!\n\n";
 	// Mages special ability also adds health
 	heal(getHealth() / 5);
 	target.setHealth(target.getHealth() - (getAttackPower() * 1.5));
