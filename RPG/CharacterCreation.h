@@ -7,17 +7,17 @@
 class CharacterCreation {
 public:
 	/** @brief This method is used to create characters in the RPG game using the 3 provided classes (e.g Warrior, Mage or Rogue). */
-	static std::unique_ptr<Character> createCharacter();
+	static std::shared_ptr<Character> createCharacter();
 
 private:
 
 	/** @brief creates a unique_ptr Warrior object. */
-	static std::unique_ptr<Warrior> createWarrior();
+	static std::shared_ptr<Warrior> createWarrior();
 
 	/** @brief creates a unique_ptr Warrior object. */
-	static std::unique_ptr<Mage> createMage();
+	static std::shared_ptr<Mage> createMage();
 
 	/** @brief creates a unique_ptr Warrior object. */
-	static std::unique_ptr<Rogue> createRogue();
+	static std::shared_ptr<Rogue> createRogue();
 
 };
