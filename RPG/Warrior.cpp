@@ -9,6 +9,7 @@ void Warrior::attack(Character& target) {
 	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .30)));
 
 	if (target.isDead()) {
+		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
 		setExperience(getExperience() + 500);
 		// Check if Warrior levels up
 		levelUp();
@@ -20,6 +21,7 @@ void Warrior::useAbility(Character& target) {
 	std::cout << getName() << " used his special ability, Unleashing the Fury of a Thousand Suns!!!\n\n";
 	target.setHealth(target.getHealth() - (getAttackPower() * 1.5));
 	if (target.isDead()) {
+		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
 		setExperience(getExperience() + 250);
 		// Check if Warrior levels up
 		levelUp();
@@ -28,7 +30,7 @@ void Warrior::useAbility(Character& target) {
 
 // Method to heal the warrior. Takes int amount and adds to warrior overrall health.
 void Warrior::heal(int amount) {
-	std::cout << getName() << " choose to heal himself by " << amount << "!!\n\n";
+	std::cout << getName() << " heals by  " << amount << " amount!!\n\n";
 	setHealth(getHealth() + amount);
 }
 
