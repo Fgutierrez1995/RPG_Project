@@ -19,9 +19,7 @@ public:
 	*/
 	Warrior(int attackPower, int defense, const std::string& name);
 
-	/*
-	* @brief Default Destructor.
-	*/
+	/** @brief Default Destructor.*/
 	 ~Warrior() = default;
 
 	/*
@@ -43,19 +41,13 @@ public:
 	*/
 	virtual void heal(int amount) override;
 
-	/*
-	* @brief Method is used to level up the warrior object. This method increased the warriors attack, defense, combat, health level.
-	*/
+	/** @brief Method is used to level up the warrior object. This method increased the warriors attack, defense, combat, health level.*/
 	virtual void levelUp() override;
 
-	/*
-	* @brief Method to check if the Warrior is dead (health is zero or less)
-	*/
+	/** @brief Method to check if the Warrior is dead (health is zero or less). */
 	virtual bool isDead() const override;
 
-	/*
-	* @brief Method to display all the Warrior levels.
-	*/
+	/** @brief Method to display all the Warrior levels. */
 	virtual void displayInfo() const override;
 
 private:
