@@ -18,9 +18,7 @@ public:
 	*/
 	Rogue(int attackPower, int defense, const std::string& name);
 
-	/*
-	* @brief Default Destructor.
-	*/
+	/** @brief Default Destructor. */
 	~Rogue() = default;
 
 	/*
@@ -41,19 +39,13 @@ public:
 	*/
 	virtual void heal(int amount) override;
 
-	/*
-	* @brief Method is used to level up the rogue object. This method increased the mage attack, defense, combat, health level.
-	*/
+	/** @brief Method is used to level up the rogue object. This method increased the mage attack, defense, combat, health level. */
 	virtual void levelUp() override;
 
-	/*
-	* @brief Method to check if the rogue is dead (health is zero or less)
-	*/
+	/** @brief Method to check if the rogue is dead (health is zero or less). */
 	virtual bool isDead() const override;
 
-	/*
-	* @brief Method to display all the rogue levels.
-	*/
+	/** @brief Method to display all the rogue levels. */
 	virtual void displayInfo() const override;
 
 private:
