@@ -1,4 +1,5 @@
 #pragma once
+#include "string"
 
 class Character {
 public:
@@ -10,12 +11,11 @@ public:
 
 	/*
 	* @brief Constructor to initalize data members
-	* @params health The health of the character.
 	* @params attackPower The attack power of the character.
 	* @params defense The defense level of the character.
-	* @params combatLevel The combat level of the character.
+	* @params name The name of the character.
 	*/
-	Character(int health, int attackPower, int defense, int combatLevel);
+	Character(int attackPower, int defense, const std::string& name);
 
 	/*
 	* @brief Default Destructor.
@@ -24,11 +24,11 @@ public:
 
 	// Pure Virtual functions for common character actions.
 	virtual void attack(Character& target) = 0;
-	virtual void defend(int incomingDage) = 0;
 	virtual void useAbility(Character& target) = 0;
 	virtual void heal(int amount) = 0;
 	virtual void levelUp() = 0;
 	virtual void displayInfo() const = 0;
+	virtual bool isDead() const = 0;
 
 	/*
 	* @breif Sets the health of the character.
@@ -54,6 +54,19 @@ public:
 	*/
 	void setCombatLevel(int combatLevel);
 
+	/*
+	* @breif Sets the total experience of the character.
+	* @param experience The experience assigned to the character.
+	*/
+	void setExperience(int experience);
+
+	/*
+	* @breif Sets the name of the character.
+	* @param name The name assigned to the character.
+	*/
+	void setName(const std::string& name);
+
+
 	/** @brief Returns the health of the character.*/
 	int getHealth() const;
 
@@ -66,10 +79,18 @@ public:
 	/** @brief Returns the combat level of the character.*/
 	int getCombatLevel() const;
 
+	/** @brief Returns the total experience of the character.*/
+	int getExperience() const;
+
+	/** @brief Returns the name of the character.*/
+	std::string getName() const;
+
 private:
-	int health_ = 0;
-	int attackPower_ = 0;
-	int defense_ = 0;
-	int combatLevel_ = 1;
+	int attackPower_ = 1;
+	int defense_ = 1;
+	int combatLevel_ = (attackPower_ + defense_) / 2;
+	int health_ = (attackPower_ + defense_) * 2;
+	int totalExperience_ = 0;
+	std::string name_ = "";
 
 };

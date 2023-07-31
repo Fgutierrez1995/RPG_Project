@@ -1,5 +1,6 @@
 #pragma once
 #include "Character.h"
+#include <string>
 #include <iostream>
 
 
@@ -12,26 +13,50 @@ public:
 
 	/*
 	* @brief Constructor to initalize data members
-	* @params health The health of the warrior.
 	* @params attackPower The attack power of the warrior.
 	* @params defense The defense level of the warrior.
-	* @params combatLevel The combat level of the warrior.
+	* @params name The name of the warrior.
 	*/
-	Warrior(int health, int attackPower, int defense, int combatLevel);
+	Warrior(int attackPower, int defense, const std::string& name);
 
 	/*
 	* @brief Default Destructor.
 	*/
 	 ~Warrior() = default;
 
+	/*
+	* @brief Method to simulate a Warrior object attacking a Character target.
+	* @parmas target The character target that is under attack.
+	*/
 	virtual void attack(Character& target) override;
-	virtual void defend(int incomingDage) override;
+
+	/*
+	* @brief Method to simulate a Warrior object using his special ability on a Character target.
+	* @parmas target The character target that is under attack.
+	*/
 	virtual void useAbility(Character& target) override;
+
+	/*
+	* @brief Method to simulate a Warrior healing themselves.
+	* @param amount The amount the Warrior is healed by.
+	*/
 	virtual void heal(int amount) override;
+
+	/*
+	* @brief Method is used to level up the warrior object. This method increased the warriors attack, defense, combat, health level.
+	*/
 	virtual void levelUp() override;
+
+	/*
+	* @brief Method to check if the Warrior is dead (health is zero or less)
+	*/
+	virtual bool isDead() const override;
+
+	/*
+	* @brief Method to display all the Warrior levels.
+	*/
 	virtual void displayInfo() const override;
 
 private:
-	int warriorExperience_ = 0;
-	int experienceRecieved_ = 1;
+
 };
