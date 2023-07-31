@@ -32,7 +32,7 @@ void Mage::useAbility(Character& target) {
 
 // Method to heal the mage. Takes int amount and adds to mage overrall health.
 void Mage::heal(int amount) {
-	std::cout << getName() << " heals by " << amount << " amount!!\n\n";
+	std::cout << getName() << " heals by " << amount << "!!\n\n";
 	setHealth(getHealth() + amount);
 }
 

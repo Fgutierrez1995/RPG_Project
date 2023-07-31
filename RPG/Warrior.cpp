@@ -30,7 +30,7 @@ void Warrior::useAbility(Character& target) {
 
 // Method to heal the warrior. Takes int amount and adds to warrior overrall health.
 void Warrior::heal(int amount) {
-	std::cout << getName() << " heals by  " << amount << " amount!!\n\n";
+	std::cout << getName() << " heals by  " << amount << "!!\n\n";
 	setHealth(getHealth() + amount);
 }
 
