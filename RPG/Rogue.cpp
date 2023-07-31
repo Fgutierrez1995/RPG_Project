@@ -6,7 +6,7 @@ Rogue::Rogue(int attackPower, int defense, const std::string& name) :
 // Method to simulate rogue attacking another character target.
 void Rogue::attack(Character& target) {
 	std::cout << getName() << " attacked " << target.getName() << "!!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .30)));
+	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .5)));
 
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
@@ -18,9 +18,9 @@ void Rogue::attack(Character& target) {
 
 // Method to simulate rogue attacking with is special Ability at a Character Target.
 void Rogue::useAbility(Character& target) {
-	std::cout << getName() << " used his special ability, Vanishing Shadows: Dance with Deception and Strike from the Shadows!!!!\n\n";
+	std::cout << getName() << " used special ability, Vanishing Shadows: Dance with Deception and Strike from the Shadows!!!!\n\n";
 
-	target.setHealth(target.getHealth() - (getAttackPower() * 2));
+	target.setHealth(target.getHealth() - (getAttackPower() * 2.5));
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
 		setExperience(getExperience() + 250);
