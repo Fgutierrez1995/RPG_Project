@@ -1,11 +1,12 @@
 #include "Rogue.h"
 // Constructor
-Rogue::Rogue(int attackPower, int defense, const std::string& name) :
-	Character(attackPower, defense, name) {}
+Rogue::Rogue(double attackPower, double defense, double health, const std::string& name) :
+	Character(attackPower, defense, health, name) {}
 
 // Method to simulate rogue attacking another character target.
 void Rogue::attack(Character& target) {
-	std::cout << getName() << " attacked " << target.getName() << "!!\n\n";
+	std::cout << getName() << " attacked " << target.getName() << "!\n";
+	std::cout << target.getName() << " was damaged by " << (getAttackPower() - (target.getDefenseLevel() * .5)) << "!!\n\n";
 	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .5)));
 
 	if (target.isDead()) {
@@ -17,7 +18,9 @@ void Rogue::attack(Character& target) {
 
 // Method to simulate rogue attacking with is special Ability at a Character Target.
 void Rogue::useAbility(Character& target) {
-	std::cout << getName() << " used special ability, Vanishing Shadows: Dance with Deception and Strike from the Shadows!!!!\n\n";
+	std::cout << getName() << " used special ability, Vanishing Shadows: Dance with Deception and Strike from the Shadows!!!!\n";
+	std::cout << "Now you see me... Now you don't...\n";
+	std::cout << target.getName() << " was damaged by " << (getAttackPower() * 2.5) << "!\n\n";
 
 	target.setHealth(target.getHealth() - (getAttackPower() * 2.5));
 	if (target.isDead()) {
@@ -28,9 +31,9 @@ void Rogue::useAbility(Character& target) {
 }
 
 // Method to heal the rogue. Takes int amount and adds to rogue overrall health.
-void Rogue::heal(int amount) {
-	std::cout << getName() << " heals by " << amount << "!!\n\n";
-	setHealth(getHealth() + amount);
+void Rogue::heal() {
+	std::cout << getName() << " heals by  " << (getMaxHealth() * .20) << "!!\n\n";
+	setHealth(getHealth() + (getMaxHealth() * .20));
 }
 
 // Method to increase the rogue levels. 
@@ -41,8 +44,10 @@ void Rogue::levelUp() {
 		setAttackPower(getAttackPower() + 1);
 		// Increased defense power by 1.
 		setDefenseLevel(getDefenseLevel() + 1);
-		// Increases health by (attack + defense * 2).
-		setHealth((getAttackPower() + getDefenseLevel()) * 2);
+		// Increases new max health by (attack + defense * 2).
+		setMaxHealth((getAttackPower() + getDefenseLevel()) * 2);
+		// Update the health with the current max health.
+		setHealth(getMaxHealth());
 		// Increases combat level by (attack + defense / 2).
 		setCombatLevel((getAttackPower() + getDefenseLevel()) / 2);
 		// Reset experience to 0.
