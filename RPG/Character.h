@@ -1,5 +1,6 @@
 #pragma once
 #include "string"
+#include <random>
 
 class Character {
 public:
@@ -29,6 +30,7 @@ public:
 	virtual void levelUp() = 0;
 	virtual void displayInfo() const = 0;
 	virtual bool isDead() const = 0;
+	virtual bool isAlive() const = 0;
 
 	/*
 	* @breif Sets the health of the character.
@@ -84,6 +86,13 @@ public:
 
 	/** @brief Returns the name of the character.*/
 	std::string getName() const;
+
+	/*
+	* @brief Method to return random number between min and max.
+	* @params min The min iterator range.
+	* @params max The max iterator range.
+	*/
+	static int getRandomNumber(int min, int max);
 
 private:
 	double attackPower_ = 1;

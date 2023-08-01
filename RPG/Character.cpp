@@ -18,3 +18,11 @@ double Character::getHealth() const { return health_; }
 int Character::getCombatLevel() const { return combatLevel_; }
 int Character::getExperience() const { return totalExperience_; }
 std::string Character::getName() const { return name_; }
+
+// Method to return a random number between min and max.
+int Character::getRandomNumber(int min, int max) {
+	std::random_device rd;
+	std::default_random_engine eng(rd());
+	std::uniform_int_distribution<int> distr(min, max);
+	return distr(eng);
+}
