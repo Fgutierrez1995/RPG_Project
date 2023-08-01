@@ -3,7 +3,7 @@
 // Methods ask user to choose what character class they would like to create.
 std::shared_ptr<Character> CharacterCreation::createCharacter() {
 	bool characterChoosen = false; // Flag to break the do-while loop.
-	std::shared_ptr<Character> character; // unique_ptr object that will be returned.
+	std::shared_ptr<Character> character; // shared_ptr object that will be returned.
 	do {
 		int choice;
 		std::cout << "Choose a classs: \n";
