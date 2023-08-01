@@ -41,7 +41,8 @@ std::shared_ptr<Warrior> CharacterCreation::createWarrior() {
 	std::string name;
 	std::cout << "What name do you choose for your warrior?" << std::endl;
 	std::getline(std::cin, name);
-	return std::make_shared<Warrior>(15, 5, name);
+	double health = (15 + 5) * 2.5;
+	return std::make_shared<Warrior>(15, 5, health, name);
 }
 
 // Method that returns a Mage object.
@@ -49,7 +50,8 @@ std::shared_ptr<Mage> CharacterCreation::createMage() {
 	std::string name;
 	std::cout << "What name do you choose for your mage?" << std::endl;
 	std::getline(std::cin, name);
-	return std::make_shared<Mage>(20, 1, name);
+	double health = (20 + 1) * 2;
+	return std::make_shared<Mage>(20, 1, health, name);
 }
 
 // Method that returns a Rogue object.
@@ -57,5 +59,6 @@ std::shared_ptr<Rogue> CharacterCreation::createRogue() {
 	std::string name;
 	std::cout << "What name do you choose for your rogue?" << std::endl;
 	std::getline(std::cin, name);
-	return std::make_shared<Rogue>(18, 2, name);
+	double health = (18 + 2) * 2;
+	return std::make_shared<Rogue>(18, 2, health, name);
 }
