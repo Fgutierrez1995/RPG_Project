@@ -14,9 +14,10 @@ public:
 	* @brief Constructor to initalize data members
 	* @params attackPower The attack power of the mage.
 	* @params defense The defense level of the mage.
+	* @params health The health of the mage.
 	* @params name The name of the mage.
 	*/
-	Mage(int attackPower, int defense, const std::string& name);
+	Mage(double attackPower, double defense, double health, const std::string& name);
 
 	/** @brief Default Destructor. */
 	~Mage() = default;
@@ -37,7 +38,7 @@ public:
 	* @brief Method to simulate a mage healing themselves.
 	* @param amount The amount the mage is healed by.
 	*/
-	virtual void heal(int amount) override;
+	virtual void heal() override;
 
 	/** @brief Method is used to level up the mage object. This method increased the mage attack, defense, combat, health level. */
 	virtual void levelUp() override;
