@@ -1,7 +1,7 @@
 #pragma once
 #include "Character.h"
-#include <string>
 #include <iostream>
+#include <memory>
 
 
 class Warrior : public Character {
@@ -19,9 +19,7 @@ public:
 	*/
 	Warrior(int attackPower, int defense, const std::string& name);
 
-	/*
-	* @brief Default Destructor.
-	*/
+	/** @brief Default Destructor.*/
 	 ~Warrior() = default;
 
 	/*
@@ -29,6 +27,7 @@ public:
 	* @parmas target The character target that is under attack.
 	*/
 	virtual void attack(Character& target) override;
+
 
 	/*
 	* @brief Method to simulate a Warrior object using his special ability on a Character target.
@@ -42,19 +41,16 @@ public:
 	*/
 	virtual void heal(int amount) override;
 
-	/*
-	* @brief Method is used to level up the warrior object. This method increased the warriors attack, defense, combat, health level.
-	*/
+	/** @brief Method is used to level up the warrior object. This method increased the warriors attack, defense, combat, health level.*/
 	virtual void levelUp() override;
 
-	/*
-	* @brief Method to check if the Warrior is dead (health is zero or less)
-	*/
+	/** @brief Method to check if the Warrior is dead (health is zero or less). */
 	virtual bool isDead() const override;
 
-	/*
-	* @brief Method to display all the Warrior levels.
-	*/
+	/** @brief Method to check if the Warrior is alive (health is greater than zero). */
+	virtual bool isAlive() const override;
+
+	/** @brief Method to display all the Warrior levels. */
 	virtual void displayInfo() const override;
 
 private:

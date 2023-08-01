@@ -1,5 +1,6 @@
 #pragma once
 #include "string"
+#include <random>
 
 class Character {
 public:
@@ -15,7 +16,7 @@ public:
 	* @params defense The defense level of the character.
 	* @params name The name of the character.
 	*/
-	Character(int attackPower, int defense, const std::string& name);
+	Character(double attackPower, double defense, const std::string& name);
 
 	/*
 	* @brief Default Destructor.
@@ -29,24 +30,25 @@ public:
 	virtual void levelUp() = 0;
 	virtual void displayInfo() const = 0;
 	virtual bool isDead() const = 0;
+	virtual bool isAlive() const = 0;
 
 	/*
 	* @breif Sets the health of the character.
 	* @param health The health assigned to the character.
 	*/
-	void setHealth(int health);
+	void setHealth(double health);
 
 	/*
 	* @breif Sets the attack power of the character.
 	* @param attackPower The attack power assigned to the character.
 	*/
-	void setAttackPower(int attackPower);
+	void setAttackPower(double attackPower);
 
 	/*
 	* @breif Sets the defense level of the character.
 	* @param defense The defense level assigned to the character.
 	*/
-	void setDefenseLevel(int defense);
+	void setDefenseLevel(double defense);
 
 	/*
 	* @breif Sets the combat level of the character.
@@ -68,13 +70,13 @@ public:
 
 
 	/** @brief Returns the health of the character.*/
-	int getHealth() const;
+	double getHealth() const;
 
 	/** @brief Returns the attack power of the character.*/
-	int getAttackPower() const;
+	double getAttackPower() const;
 
 	/** @brief Returns the defense level of the character.*/
-	int getDefenseLevel() const;
+	double getDefenseLevel() const;
 
 	/** @brief Returns the combat level of the character.*/
 	int getCombatLevel() const;
@@ -85,11 +87,18 @@ public:
 	/** @brief Returns the name of the character.*/
 	std::string getName() const;
 
+	/*
+	* @brief Method to return random number between min and max.
+	* @params min The min iterator range.
+	* @params max The max iterator range.
+	*/
+	static int getRandomNumber(int min, int max);
+
 private:
-	int attackPower_ = 1;
-	int defense_ = 1;
+	double attackPower_ = 1;
+	double defense_ = 1;
 	int combatLevel_ = (attackPower_ + defense_) / 2;
-	int health_ = (attackPower_ + defense_) * 2;
+	double health_ = (attackPower_ + defense_) * 2;
 	int totalExperience_ = 0;
 	std::string name_ = "";
 
