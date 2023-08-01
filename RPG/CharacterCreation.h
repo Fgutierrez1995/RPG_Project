@@ -2,6 +2,7 @@
 #include "Warrior.h"
 #include "Mage.h"
 #include "Rogue.h"
+#include "Character.h"
 #include <memory>
 
 class CharacterCreation {
