@@ -45,6 +45,9 @@ public:
 	/** @brief Method to check if the mage is dead (health is zero or less). */
 	virtual bool isDead() const override;
 
+	/** @brief Method to check if the mage is alive (health is greater than zero). */
+	virtual bool isAlive() const override;
+
 	/** @brief Method to display all the mage levels. */
 	virtual void displayInfo() const override;
 

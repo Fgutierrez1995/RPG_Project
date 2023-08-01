@@ -47,6 +47,9 @@ public:
 	/** @brief Method to check if the Warrior is dead (health is zero or less). */
 	virtual bool isDead() const override;
 
+	/** @brief Method to check if the Warrior is alive (health is greater than zero). */
+	virtual bool isAlive() const override;
+
 	/** @brief Method to display all the Warrior levels. */
 	virtual void displayInfo() const override;
 

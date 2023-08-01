@@ -10,7 +10,6 @@ void Rogue::attack(Character& target) {
 
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		setExperience(getExperience() + 500);
 		// Check if rogue levels up
 		levelUp();
 	}
@@ -23,7 +22,6 @@ void Rogue::useAbility(Character& target) {
 	target.setHealth(target.getHealth() - (getAttackPower() * 2.5));
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		setExperience(getExperience() + 250);
 		// Check if rogue levels up
 		levelUp();
 	}
@@ -55,6 +53,11 @@ void Rogue::levelUp() {
 // Method to check if health is less than or equal to 0.
 bool Rogue::isDead() const {
 	return getHealth() <= 0;
+}
+
+// Method to check if health is greater than 0;
+bool Rogue::isAlive() const {
+	return getHealth() > 0;
 }
 
 // Method to display rogue stats. 

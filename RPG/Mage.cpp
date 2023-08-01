@@ -10,7 +10,6 @@ void Mage::attack(Character& target) {
 
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		setExperience(getExperience() + 500);
 		// Check if mage levels up
 		levelUp();
 	}
@@ -24,7 +23,6 @@ void Mage::useAbility(Character& target) {
 	target.setHealth(target.getHealth() - (getAttackPower() * 1.5));
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		setExperience(getExperience() + 250);
 		// Check if mage levels up
 		levelUp();
 	}
@@ -56,6 +54,11 @@ void Mage::levelUp() {
 // Method to check if health is less than or equal to 0.
 bool Mage::isDead() const {
 	return getHealth() <= 0;
+}
+
+// Method to check if health is greater than 0;
+bool Mage::isAlive() const {
+	return getHealth() > 0;
 }
 
 // Method to display mage stats. 

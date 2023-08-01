@@ -10,7 +10,6 @@ void Warrior::attack(Character& target) {
 
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		setExperience(getExperience() + 500);
 		// Check if Warrior levels up
 		levelUp();
 	}
@@ -23,7 +22,6 @@ void Warrior::useAbility(Character& target) {
 	target.setHealth(target.getHealth() - (getAttackPower() * 2));
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		setExperience(getExperience() + 250);
 		// Check if Warrior levels up
 		levelUp();
 	}
@@ -55,6 +53,11 @@ void Warrior::levelUp() {
 // Method to check if health is less than or equal to 0.
 bool Warrior::isDead() const {
 	return getHealth() <= 0;
+}
+
+// Method to check if health is greater than 0.
+bool Warrior::isAlive() const {
+	return getHealth() > 0;
 }
 
 // Method to display warrior stats. 
