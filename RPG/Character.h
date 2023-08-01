@@ -14,9 +14,10 @@ public:
 	* @brief Constructor to initalize data members
 	* @params attackPower The attack power of the character.
 	* @params defense The defense level of the character.
+	* @params health The health of the character.
 	* @params name The name of the character.
 	*/
-	Character(double attackPower, double defense, const std::string& name);
+	Character(double attackPower, double defense, double health, const std::string& name);
 
 	/*
 	* @brief Default Destructor.
@@ -26,7 +27,7 @@ public:
 	// Pure Virtual functions for common character actions.
 	virtual void attack(Character& target) = 0;
 	virtual void useAbility(Character& target) = 0;
-	virtual void heal(int amount) = 0;
+	virtual void heal() = 0;
 	virtual void levelUp() = 0;
 	virtual void displayInfo() const = 0;
 	virtual bool isDead() const = 0;
@@ -68,6 +69,12 @@ public:
 	*/
 	void setName(const std::string& name);
 
+	/*
+	* @breif Sets the max health of the character
+	* @param maxHealth The max health assigned to the character.
+	*/
+	void setMaxHealth(double maxHealth);
+
 
 	/** @brief Returns the health of the character.*/
 	double getHealth() const;
@@ -87,6 +94,9 @@ public:
 	/** @brief Returns the name of the character.*/
 	std::string getName() const;
 
+	/** @breif Returns the max health of the charcter. */
+	double getMaxHealth() const;
+
 	/*
 	* @brief Method to return random number between min and max.
 	* @params min The min iterator range.
@@ -94,11 +104,14 @@ public:
 	*/
 	static int getRandomNumber(int min, int max);
 
+
+
 private:
 	double attackPower_ = 1;
 	double defense_ = 1;
 	int combatLevel_ = (attackPower_ + defense_) / 2;
-	double health_ = (attackPower_ + defense_) * 2;
+	double health_ = 0;
+	double maxHealth_ = health_;
 	int totalExperience_ = 0;
 	std::string name_ = "";
 
