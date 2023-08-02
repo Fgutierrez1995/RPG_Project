@@ -11,6 +11,7 @@ void Character::setCombatLevel(int combatLevel) { combatLevel_ = combatLevel; }
 void Character::setExperience(int experience) { totalExperience_ = experience; }
 void Character::setName(const std::string& name) { name_ = name; }
 void Character::setMaxHealth(double maxHealth) { maxHealth_ = maxHealth; }
+void Character::setCoolDown(int coolDown) { coolDown_ = coolDown; }
 
 // Getter Methods
 double Character::getAttackPower() const { return attackPower_; }
@@ -20,6 +21,7 @@ int Character::getCombatLevel() const { return combatLevel_; }
 int Character::getExperience() const { return totalExperience_; }
 std::string Character::getName() const { return name_; }
 double Character::getMaxHealth() const { return maxHealth_; }
+int Character::getCoolDown() const { return coolDown_; }
 
 // Method to return a random number between min and max.
 int Character::getRandomNumber(int min, int max) {

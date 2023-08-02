@@ -75,6 +75,12 @@ public:
 	*/
 	void setMaxHealth(double maxHealth);
 
+	/*
+	* @breif Sets the cool down for the character after using their useAbility() method.
+	* @param coolDown The value set to the coolDown_ to the character.
+	*/
+	void setCoolDown(int coolDown);
+
 
 	/** @brief Returns the health of the character.*/
 	double getHealth() const;
@@ -97,6 +103,9 @@ public:
 	/** @breif Returns the max health of the charcter. */
 	double getMaxHealth() const;
 
+	/** @breif Returns the cool down of the character. */
+	int getCoolDown() const;
+
 	/*
 	* @brief Method to return random number between min and max.
 	* @params min The min iterator range.
@@ -113,6 +122,7 @@ private:
 	double health_ = 0;
 	double maxHealth_ = health_;
 	int totalExperience_ = 0;
+	int coolDown_ = 0;
 	std::string name_ = "";
 
 };
