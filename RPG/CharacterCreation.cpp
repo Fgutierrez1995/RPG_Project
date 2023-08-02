@@ -24,6 +24,7 @@ std::shared_ptr<Character> CharacterCreation::createCharacter() {
 		int choice;
 		std::cin >> choice;
 
+		// If the user enters anything but a integer. 
 		if (std::cin.fail() || characterCreators.find(choice) == characterCreators.end()) {
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	 // Ignore newline character
