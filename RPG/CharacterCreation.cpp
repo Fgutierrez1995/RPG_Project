@@ -46,7 +46,7 @@ std::shared_ptr<Warrior> CharacterCreation::createWarrior() {
 	std::cout << "What name do you choose for your warrior?" << std::endl;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	 // Ignore newline character
 	std::getline(std::cin, name);
-	double health = (15 + 5) * 2.5;
+	double health = (15.0 + 5.0) * 2.5;
 	return std::make_shared<Warrior>(15, 5, health, name);
 }
 
@@ -56,7 +56,7 @@ std::shared_ptr<Mage> CharacterCreation::createMage() {
 	std::cout << "What name do you choose for your mage?" << std::endl;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	 // Ignore newline character
 	std::getline(std::cin, name);
-	double health = (20 + 1) * 2;
+	double health = (20.0 + 1.0) * 2.0;
 	return std::make_shared<Mage>(20, 1, health, name);
 }
 
@@ -66,6 +66,6 @@ std::shared_ptr<Rogue> CharacterCreation::createRogue() {
 	std::cout << "What name do you choose for your rogue?" << std::endl;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	 // Ignore newline character
 	std::getline(std::cin, name);
-	double health = (18 + 2) * 2;
+	double health = (18.0 + 2.0) * 2.0;
 	return std::make_shared<Rogue>(18, 2, health, name);
 }
