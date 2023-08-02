@@ -18,6 +18,10 @@ void Mage::attack(Character& target) {
 
 // Method to simulate mage attacking with is special Ability at a Character Target.
 void Mage::useAbility(Character& target) {
+	// useAbility is only able to be used every 3 turns.
+	if (getCoolDown() == 0) {
+		setCoolDown(3);
+	}
 	std::cout << getName() << " used special ability, Channeling Arcane Brilliance: Unleash the Power of the Elements!!!!\n";
 	std::cout << "Embrace your pain " << target.getName() << ", as I siphon life with each spell!\n";
 	// Mages special ability also adds health
@@ -27,8 +31,6 @@ void Mage::useAbility(Character& target) {
 	target.setHealth(target.getHealth() - (getAttackPower()));
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		// Check if mage levels up
-		levelUp();
 	}
 }
 

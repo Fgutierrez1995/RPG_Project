@@ -18,6 +18,10 @@ void Rogue::attack(Character& target) {
 
 // Method to simulate rogue attacking with is special Ability at a Character Target.
 void Rogue::useAbility(Character& target) {
+	// useAbility is only able to be used every 3 turns.
+	if (getCoolDown() == 0) {
+		setCoolDown(3);
+	}
 	std::cout << getName() << " used special ability, Vanishing Shadows: Dance with Deception and Strike from the Shadows!!!!\n";
 	std::cout << "Now you see me... Now you don't...\n";
 	std::cout << target.getName() << " was damaged by " << (getAttackPower() * 2.5) << "!\n\n";
@@ -25,8 +29,6 @@ void Rogue::useAbility(Character& target) {
 	target.setHealth(target.getHealth() - (getAttackPower() * 2.5));
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		// Check if rogue levels up
-		levelUp();
 	}
 }
 

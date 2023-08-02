@@ -17,6 +17,10 @@ void Warrior::attack(Character& target) {
 
 // Method to simulate Warrior attacking with is special Ability at a Character Target.
 void Warrior::useAbility(Character& target) {
+	// useAbility is only able to be used every 3 turns.
+	if (getCoolDown() == 0) {
+		setCoolDown(3);
+	}
 	std::cout << getName() << " used special ability, Unleashing the Fury of a Thousand Suns!!!\n";
 	std::cout << "Brance yourself " << target.getName() << " your about to take the force of a Thousand Suns!\n";
 	std::cout << target.getName() << " was damaged by " << (getAttackPower() * 2) << "!\n\n";
