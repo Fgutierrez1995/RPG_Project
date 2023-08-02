@@ -1,36 +1,39 @@
 #include "Warrior.h"
 // Constructor
-Warrior::Warrior(int attackPower, int defense, const std::string& name) :
-	Character(attackPower, defense, name) {}
+Warrior::Warrior(double attackPower, double defense, double health, const std::string& name) :
+	Character(attackPower, defense, health, name) {}
 
 // Method to simulate Warrior attacking another Character Target.
 void Warrior::attack(Character& target) {
-	std::cout << getName() << " attacked " << target.getName() << "!!\n\n";
+	std::cout << getName() << " attacked " << target.getName() << "!\n";
+	std::cout << target.getName() << " was damaged by " << (getAttackPower() - (target.getDefenseLevel() * .5)) << "!!\n\n";
 	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .5)));
 
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		// Check if Warrior levels up
-		levelUp();
 	}
 }
 
 
 // Method to simulate Warrior attacking with is special Ability at a Character Target.
 void Warrior::useAbility(Character& target) {
-	std::cout << getName() << " used special ability, Unleashing the Fury of a Thousand Suns!!!\n\n";
+	// useAbility is only able to be used every 3 turns.
+	if (getCoolDown() == 0) {
+		setCoolDown(3);
+	}
+	std::cout << getName() << " used special ability, Unleashing the Fury of a Thousand Suns!!!\n";
+	std::cout << "Brance yourself " << target.getName() << " your about to take the force of a Thousand Suns!\n";
+	std::cout << target.getName() << " was damaged by " << (getAttackPower() * 2) << "!\n\n";
 	target.setHealth(target.getHealth() - (getAttackPower() * 2));
 	if (target.isDead()) {
 		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		// Check if Warrior levels up
-		levelUp();
 	}
 }
 
-// Method to heal the warrior. Takes int amount and adds to warrior overrall health.
-void Warrior::heal(int amount) {
-	std::cout << getName() << " heals by  " << amount << "!!\n\n";
-	setHealth(getHealth() + amount);
+// Method to heal the warrior.
+void Warrior::heal() {
+	std::cout << getName() << " heals by  " << (getMaxHealth() * .20) << "!!\n\n";
+	setHealth(getHealth() + (getMaxHealth() * .20));
 }
 
 // Method to increase the warrior levels. 
@@ -41,8 +44,10 @@ void Warrior::levelUp() {
 		setAttackPower(getAttackPower() + 1);
 		// Increased defense power by 1.
 		setDefenseLevel(getDefenseLevel() + 1);
-		// Increases health by (attack + defense * 2).
-		setHealth((getAttackPower() + getDefenseLevel()) * 2);
+		// Increases new max health by (attack + defense * 3).
+		setMaxHealth((getAttackPower() + getDefenseLevel()) * 3);
+		// Update the health with the current max health.
+		setHealth(getMaxHealth());
 		// Increases combat level by (attack + defense / 2).
 		setCombatLevel((getAttackPower() + getDefenseLevel()) / 2);
 		// Reset experience to 0.

@@ -15,9 +15,10 @@ public:
 	* @brief Constructor to initalize data members
 	* @params attackPower The attack power of the warrior.
 	* @params defense The defense level of the warrior.
+	* @params health The health of the warrior.
 	* @params name The name of the warrior.
 	*/
-	Warrior(int attackPower, int defense, const std::string& name);
+	Warrior(double attackPower, double defense, double health, const std::string& name);
 
 	/** @brief Default Destructor.*/
 	 ~Warrior() = default;
@@ -39,7 +40,7 @@ public:
 	* @brief Method to simulate a Warrior healing themselves.
 	* @param amount The amount the Warrior is healed by.
 	*/
-	virtual void heal(int amount) override;
+	virtual void heal() override;
 
 	/** @brief Method is used to level up the warrior object. This method increased the warriors attack, defense, combat, health level.*/
 	virtual void levelUp() override;

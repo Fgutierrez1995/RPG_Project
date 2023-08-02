@@ -14,9 +14,10 @@ public:
 	* @brief Constructor to initalize data members
 	* @params attackPower The attack power of the rogue.
 	* @params defense The defense level of the rogue.
+	* @params health The health of the rogue.
 	* @params name The name of the rogue.
 	*/
-	Rogue(int attackPower, int defense, const std::string& name);
+	Rogue(double attackPower, double defense, double health, const std::string& name);
 
 	/** @brief Default Destructor. */
 	~Rogue() = default;
@@ -37,7 +38,7 @@ public:
 	* @brief Method to simulate a Rogue healing themselves.
 	* @param amount The amount the mage is healed by.
 	*/
-	virtual void heal(int amount) override;
+	virtual void heal() override;
 
 	/** @brief Method is used to level up the rogue object. This method increased the mage attack, defense, combat, health level. */
 	virtual void levelUp() override;
