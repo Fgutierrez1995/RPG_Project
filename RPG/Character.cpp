@@ -30,3 +30,15 @@ int Character::getRandomNumber(int min, int max) {
 	std::uniform_int_distribution<int> distr(min, max);
 	return distr(eng);
 }
+
+// Method to determine the attack damage given
+double Character::damageGiven(Character& target) {
+	// Get a random number between 0 and 100.
+	int randomNumber = getRandomNumber(0, 100);
+	// Turn the random number into a fraction.
+	double potentialDamage = randomNumber / 100.00;
+	// Determine the damage.
+	double damage = getAttackPower() - ((getAttackPower() - (target.getDefenseLevel() * .5)) * potentialDamage);
+	// Return damage.
+	return damage;
+}
