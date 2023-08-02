@@ -5,13 +5,10 @@ Warrior::Warrior(double attackPower, double defense, double health, const std::s
 
 // Method to simulate Warrior attacking another Character Target.
 void Warrior::attack(Character& target) {
+	double damage = damageGiven(target);
 	std::cout << getName() << " attacked " << target.getName() << "!\n";
-	std::cout << target.getName() << " was damaged by " << (getAttackPower() - (target.getDefenseLevel() * .5)) << "!!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .5)));
-
-	if (target.isDead()) {
-		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-	}
+	std::cout << target.getName() << " was damaged by " << damage << "!!\n\n";
+	target.setHealth(target.getHealth() - damage);
 }
 
 
@@ -21,13 +18,11 @@ void Warrior::useAbility(Character& target) {
 	if (getCoolDown() == 0) {
 		setCoolDown(3);
 	}
+	double damage = damageGiven(target);
 	std::cout << getName() << " used special ability, Unleashing the Fury of a Thousand Suns!!!\n";
 	std::cout << "Brance yourself " << target.getName() << " your about to take the force of a Thousand Suns!\n";
-	std::cout << target.getName() << " was damaged by " << (getAttackPower() * 2) << "!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower() * 2));
-	if (target.isDead()) {
-		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-	}
+	std::cout << target.getName() << " was damaged by " << (damage * 2) << "!\n\n";
+	target.setHealth(target.getHealth() - (damage * 2));
 }
 
 // Method to heal the warrior.
