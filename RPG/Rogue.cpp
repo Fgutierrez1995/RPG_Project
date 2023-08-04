@@ -5,15 +5,10 @@ Rogue::Rogue(double attackPower, double defense, double health, const std::strin
 
 // Method to simulate rogue attacking another character target.
 void Rogue::attack(Character& target) {
+	double damage = damageGiven(target);
 	std::cout << getName() << " attacked " << target.getName() << "!\n";
-	std::cout << target.getName() << " was damaged by " << (getAttackPower() - (target.getDefenseLevel() * .5)) << "!!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .5)));
-
-	if (target.isDead()) {
-		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		// Check if rogue levels up
-		levelUp();
-	}
+	std::cout << target.getName() << " was damaged by " << damage << "!!\n\n";
+	target.setHealth(target.getHealth() - damage);
 }
 
 // Method to simulate rogue attacking with is special Ability at a Character Target.
@@ -22,14 +17,12 @@ void Rogue::useAbility(Character& target) {
 	if (getCoolDown() == 0) {
 		setCoolDown(3);
 	}
+	double damage = damageGiven(target);
 	std::cout << getName() << " used special ability, Vanishing Shadows: Dance with Deception and Strike from the Shadows!!!!\n";
 	std::cout << "Now you see me... Now you don't...\n";
-	std::cout << target.getName() << " was damaged by " << (getAttackPower() * 2.5) << "!\n\n";
+	std::cout << target.getName() << " was damaged by " << (damage * 2.5) << "!\n\n";
 
-	target.setHealth(target.getHealth() - (getAttackPower() * 2.5));
-	if (target.isDead()) {
-		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-	}
+	target.setHealth(target.getHealth() - (damage * 2.5));
 }
 
 // Method to heal the rogue. Takes int amount and adds to rogue overrall health.

@@ -1,6 +1,7 @@
 #pragma once
 #include "string"
 #include <random>
+#include <iostream>
 
 class Character {
 public:
@@ -113,6 +114,8 @@ public:
 	*/
 	static int getRandomNumber(int min, int max);
 
+	// Method to determine how hard the character hits.
+	double damageGiven(Character& target);
 
 
 private:

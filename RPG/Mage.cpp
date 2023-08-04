@@ -5,15 +5,10 @@ Mage::Mage(double attackPower, double defense, double health, const std::string&
 
 // Method to simulate mage attacking another character target.
 void Mage::attack(Character& target) {
+	double damage = damageGiven(target);
 	std::cout << getName() << " attacked " << target.getName() << "!\n";
-	std::cout << target.getName() << " was damaged by " << (getAttackPower() - (target.getDefenseLevel() * .5)) << "!!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower() - (target.getDefenseLevel() * .5)));
-
-	if (target.isDead()) {
-		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-		// Check if mage levels up
-		levelUp();
-	}
+	std::cout << target.getName() << " was damaged by " << damage << "!!\n\n";
+	target.setHealth(target.getHealth() - damage);
 }
 
 // Method to simulate mage attacking with is special Ability at a Character Target.
@@ -22,16 +17,14 @@ void Mage::useAbility(Character& target) {
 	if (getCoolDown() == 0) {
 		setCoolDown(3);
 	}
+	double damage = damageGiven(target);
 	std::cout << getName() << " used special ability, Channeling Arcane Brilliance: Unleash the Power of the Elements!!!!\n";
 	std::cout << "Embrace your pain " << target.getName() << ", as I siphon life with each spell!\n";
 	// Mages special ability also adds health
-	setHealth(getHealth() + getAttackPower());
-	std::cout << getName() << " heals by " << getAttackPower() << ".\n";
-	std::cout << target.getName() << " was damaged by " << getAttackPower() << "!\n\n";
-	target.setHealth(target.getHealth() - (getAttackPower()));
-	if (target.isDead()) {
-		std::cout << getName() << " defeated " << target.getName() << "...\n\n";
-	}
+	setHealth(getHealth() + damage);
+	std::cout << getName() << " heals by " << damage << ".\n";
+	std::cout << target.getName() << " was damaged by " << damage << "!\n\n";
+	target.setHealth(target.getHealth() - damage);
 }
 
 // Method to heal the mage.
