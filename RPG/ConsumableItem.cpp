@@ -8,7 +8,7 @@ std::unique_ptr<ConsumableItem> ConsumableItem::makeConsumable(const std::string
 }
 
 void ConsumableItem::use(Character& character) {
-	std::cout << character.getName() << " healed by " << getHealAmount() << std::endl;	
+	std::cout << "\n" << character.getName() << " healed by " << getHealAmount() << std::endl;
 	character.setHealth(character.getHealth() + getHealAmount());
 }
 
