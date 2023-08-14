@@ -11,8 +11,8 @@ void Mage::useAbility(Character& target) {
 		setCoolDown(3);
 	}
 	double damage = damageGiven(target);
-	std::cout << getName() << " used special ability, Channeling Arcane Brilliance: Unleash the Power of the Elements!!!!\n";
-	std::cout << "Embrace your pain " << target.getName() << ", as I siphon life with each spell!\n";
+	std::cout << "\n" << getName() << " used special ability, Channeling Arcane Brilliance: Unleash the Power of the Elements!!!!\n";
+	std::cout << "Embrace your pain " << target.getName() << ", as I siphon life with each spell!\n\n";
 	// Mages special ability also adds health
 	setHealth(getHealth() + damage);
 	std::cout << getName() << " heals by " << damage << ".\n";

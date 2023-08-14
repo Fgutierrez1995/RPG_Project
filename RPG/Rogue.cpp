@@ -10,9 +10,9 @@ void Rogue::useAbility(Character& target) {
 		setCoolDown(3);
 	}
 	double damage = damageGiven(target);
-	std::cout << getName() << " used special ability, Vanishing Shadows: Dance with Deception and Strike from the Shadows!!!!\n";
+	std::cout << "\n" << getName() << " used special ability, Vanishing Shadows: Dance with Deception and Strike from the Shadows!!!!\n";
 	std::cout << "Now you see me... Now you don't...\n";
-	std::cout << target.getName() << " was damaged by " << (damage * 2.5) << "!\n\n";
+	std::cout << "\n" << target.getName() << " was damaged by " << (damage * 2.5) << "!\n\n";
 
 	target.setHealth(target.getHealth() - (damage * 2.5));
 }

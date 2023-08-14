@@ -10,9 +10,9 @@ void Warrior::useAbility(Character& target) {
 		setCoolDown(3);
 	}
 	double damage = damageGiven(target);
-	std::cout << getName() << " used special ability, Unleashing the Fury of a Thousand Suns!!!\n";
+	std::cout << "\n" << getName() << " used special ability, Unleashing the Fury of a Thousand Suns!!!\n";
 	std::cout << "Brance yourself " << target.getName() << " your about to take the force of a Thousand Suns!\n";
-	std::cout << target.getName() << " was damaged by " << (damage * 2) << "!\n\n";
+	std::cout << "\n" << target.getName() << " was damaged by " << (damage * 2) << "!\n\n";
 	target.setHealth(target.getHealth() - (damage * 2));
 }
 
