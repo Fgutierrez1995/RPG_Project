@@ -32,12 +32,8 @@ public:
 	virtual ~Character() = default;
 
 	// Pure Virtual functions for common character actions.
-	//virtual void attack(Character& target) = 0;
 	virtual void useAbility(Character& target) = 0;
-	//virtual void levelUp() = 0;
 	virtual void displayInfo() const = 0;
-	//virtual bool isDead() const = 0;
-	//virtual bool isAlive() const = 0;
 
 	/*
 	* @breif Sets the health of the character.
@@ -128,7 +124,7 @@ public:
 	*/
 	void attack(Character& target);
 
-	/** @brief Method is used to level up the warrior object. This method increased the warriors attack, defense, combat, health level.*/
+	/** @brief Method is used to level up the character object. This method increased the character attack, defense, combat, health level.*/
 	void levelUp();
 
 	/** @brief Method to check if the character is dead (health is zero or less). */
