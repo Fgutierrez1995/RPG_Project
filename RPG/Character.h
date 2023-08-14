@@ -1,7 +1,13 @@
 #pragma once
 #include "string"
 #include <random>
+#include <vector>
+#include <memory>
 #include <iostream>
+#include "Item.h"
+
+
+class Item; // Forward declaration.
 
 class Character {
 public:
@@ -26,13 +32,12 @@ public:
 	virtual ~Character() = default;
 
 	// Pure Virtual functions for common character actions.
-	virtual void attack(Character& target) = 0;
+	//virtual void attack(Character& target) = 0;
 	virtual void useAbility(Character& target) = 0;
-	virtual void heal() = 0;
-	virtual void levelUp() = 0;
+	//virtual void levelUp() = 0;
 	virtual void displayInfo() const = 0;
-	virtual bool isDead() const = 0;
-	virtual bool isAlive() const = 0;
+	//virtual bool isDead() const = 0;
+	//virtual bool isAlive() const = 0;
 
 	/*
 	* @breif Sets the health of the character.
@@ -114,8 +119,71 @@ public:
 	*/
 	static int getRandomNumber(int min, int max);
 
-	// Method to determine how hard the character hits.
+	/** @breif Method to determine how hard the character hits. */ 
 	double damageGiven(Character& target);
+
+	/*
+	* @brief Method to simulate a character object attacking a character target.
+	* @parmas target The character target that is under attack.
+	*/
+	void attack(Character& target);
+
+	/** @brief Method is used to level up the warrior object. This method increased the warriors attack, defense, combat, health level.*/
+	void levelUp();
+
+	/** @brief Method to check if the character is dead (health is zero or less). */
+	bool isDead() const;
+
+	/** @brief Method to check if the character is alive (health is greater than zero). */
+	bool isAlive() const;
+
+	/** @brief Method to simulate a Character healing themselves. */
+	void heal();
+
+	void displayConsumableInInventory();
+
+	/** @breif Method to determine if the inventory_ is empty or not. */
+	bool isInventoryEmpty() const;
+
+	/** @breif Add item to inventory. */
+	void addItem(std::unique_ptr<Item> item);
+
+	/*
+	* @breif Method to sort the inventory by ItemType (e.g ItemType::Consumable, ItemType::Weapon, ItemType::Armour).
+	* @param item1 The first comparison item object.
+	* @param item2 The second comparison item oject.
+	*/
+	static bool compareType(const std::unique_ptr<Item>& item1, const std::unique_ptr<Item>& item2);
+
+	/** @brief Method to display the items in the inventory. */
+	void displayInventory();
+
+	/** @brief Method to display the items that are currently equipped by the character. */
+	void displayEquippedItems();
+
+	/** @brief Method to display the weapon and armour items in the inventory. */
+	void displayWeaponsandArmourItems();
+
+	/** @brief Method to display if the character has a weapon equipped. */
+	bool hasWeaponEquipped();
+
+	/** @brief Method to display if the character has a armour equipped. */
+	bool hasArmourEquipped();
+
+	/** @brief Method to display if the character has consumable item available. */
+	bool hasConsumableItems();
+
+	/** @breif Method to equip a item in the inventory. */
+	void equipItem();
+
+	/** @breif Method to unequip a item in the inventory. */
+	void unequippedItem();
+
+	/** @bried Method to remove a item in the inventory. */
+	void removeItem();
+
+	/** @breif Method to make sure the user input is valid. */
+	int safeInputInt(); 
 
 
 private:
@@ -127,5 +195,5 @@ private:
 	int totalExperience_ = 0;
 	int coolDown_ = 0;
 	std::string name_ = "";
-
+	std::vector<std::unique_ptr<Item>> inventory_;
 };
