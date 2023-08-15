@@ -1,7 +1,7 @@
 #include "CombatSystem.h"
 
 // Constructor
-CombatSystem::CombatSystem(std::shared_ptr<Character> player, std::shared_ptr<Character> enemy) : player_(player), enemy_(enemy) {}
+CombatSystem::CombatSystem(std::shared_ptr<Character> player, std::shared_ptr<Enemy> enemy) : player_(player), enemy_(enemy) {}
 
 // Method to determine if the battle is over.
 bool CombatSystem::battleOver() {
@@ -45,85 +45,9 @@ void CombatSystem::startBattle() {
     }
 }
 
-
-
-// Method to prompt the player to pick a combat choice (e.g. Attack, UseAbility, Heal).
-void CombatSystem::playerTurn() {
-    std::cout << player_->getName() << " Health is: " << player_->getHealth() << std::endl;
-    std::cout << player_->getCoolDown() << " cooldown.\n";
-
-    int choice;                     // Used for user input
-    bool validChoice = false;       // Flag to break the while loop.
-
-    while (!validChoice) {
-        // If player cooldown is 0, the player has a special ability available.
-        if (player_->getCoolDown() == 0) {
-            std::cout << "Your turn:\n";
-            std::cout << "1. Attack\n" << "2. Use Special Ability\n" << "3. Heal\n";
-            std::cin >> choice;
-
-            // Handle the error if the user enters anything other than an integer.
-            if (std::cin.fail()) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');         // Ignore newline character
-            }
-
-            switch (choice) {
-            case 1:
-                player_->attack(*enemy_);
-                validChoice = true;
-                break;
-            case 2:
-                player_->useAbility(*enemy_);
-                validChoice = true;
-                break;
-            case 3:
-                player_->heal();
-                validChoice = true;
-                break;
-            default:
-                std::cout << "Invalid choice. Try again.\n";
-                break;
-            }
-        }
-        else {
-            // If player is on cooldown.
-            std::cout << "Your turn:\n";
-            std::cout << "1. Attack\n" << "2. Heal\n";
-            std::cin >> choice;
-
-            // Handle the error if the user enters anything other than an integer.
-            if (std::cin.fail()) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');         // Ignore newline character
-            }
-
-            switch (choice) {
-            case 1:
-                player_->attack(*enemy_);
-                validChoice = true;
-                break;
-            case 2:
-                player_->heal();
-                validChoice = true;
-                break;
-            default:
-                std::cout << "Invalid choice. Try again.\n";
-                break;
-            }
-        }
-    }
-
-    // Decrement the player's cooldown if it's greater than 0.
-    if (player_->getCoolDown() > 0) {
-        player_->setCoolDown(player_->getCoolDown() - 1);
-    }
-}
-
-
 // Method for the enemy's turn during battle.
 void CombatSystem::enemyTurn() {
-    std::cout << enemy_->getName() << " Health is: " << enemy_->getHealth() << std::endl;
+    std::cout << "\n" << enemy_->getName() << " Health is: " << enemy_->getHealth() << std::endl;
     std::cout << enemy_->getCoolDown() << " cooldown.\n";
 
     // Variable to be used for generating random numbers.
@@ -138,59 +62,164 @@ void CombatSystem::enemyTurn() {
 
     // Implement decision-making logic for the enemy's action.
     if (enemyCoolDown == 0) {
-        // Heal the enemy if its health is lower than the player's attack power and its attack power is less than the player's health.
-        if (enemyHealth < playerAttackPower && enemyAttackPower < playerHealth) {
-            enemy_->heal();
+        randomNum = Character::getRandomNumber(1, 100);
+
+        // If the enemy's attack power is greater than the player's health, use the special ability.
+        if (enemyAttackPower > playerHealth) {
+            enemy_->useAbility(*player_);
+        }
+        // 70% chance the enemy will choose to attack instead of using its special ability.
+        if (randomNum < 70) {
+            enemy_->attack(*player_);
         }
         else {
-            // Decide whether to attack or use the special ability.
-            randomNum = Character::getRandomNumber(1, 100);
-            // If the enemy's attack power is greater than the player's health, use the special ability.
-            if (enemyAttackPower > playerHealth) {
-                enemy_->useAbility(*player_);
-            }
-            // 70% chance the enemy will choose to attack instead of using its special ability.
-            else if (randomNum < 70) {
-                enemy_->attack(*player_);
-            }
-            else {
-                enemy_->useAbility(*player_);
-            }
+            enemy_->useAbility(*player_);
         }
     }
     // If the enemy is on cooldown, decide whether to attack or heal.
     else {
-        // If the player's health is less than the enemy's attack power.
-        if (playerHealth < enemyAttackPower) {
-            randomNum = Character::getRandomNumber(1, 100); // Get a random number between 1 - 100.
-            // 60% chance the enemy will attack.
-            if (randomNum < 60) {
-                enemy_->attack(*player_);
-            }
-            else {
-                enemy_->heal();
-            }
-        }
-        // If the enemy's health is less than half of the player's attack power, then heal.
-        else if (enemyHealth < (playerAttackPower / 2)) {
-            enemy_->heal();
-        }
-        // If the enemy is not in immediate danger of dying, choose to either attack or heal.
-        else {
-            randomNum = Character::getRandomNumber(1, 100);
-            // 60% chance the enemy will attack.
-            if (randomNum < 60) {
-                enemy_->attack(*player_);
-            }
-            else {
-                enemy_->heal();
-            }
-        }
+        enemy_->attack(*player_);
     }
 
     // Decrease the enemy's cooldown if it is greater than 0.
     if (enemy_->getCoolDown() > 0) {
         enemy_->setCoolDown(enemy_->getCoolDown() - 1);
     }
+}
+
+// Method to prompt the player to pick a combat choice (e.g. Attack, UseAbility, Heal).
+void CombatSystem::playerTurn() {
+    std::cout << "\n" << player_->getName() << " Health is: " << player_->getHealth() << std::endl;
+    std::cout << player_->getCoolDown() << " cooldown.\n";
+
+    int choice;                     // Used for user input
+    bool validChoice = false;       // Flag to break the while loop.
+
+    while (!validChoice) {
+        // If player cooldown is 0, the player has a special ability available.
+        if (player_->getCoolDown() == 0) {
+            std::cout << "\nYour turn:\n";
+            std::cout << "1. Attack\n" << "2. Use Special Ability\n" << "3. Access Inventory\n";
+            choice = safeInputInt();    // Use safeInputInt() to get user input
+
+            switch (choice) {
+            case 1:
+                player_->attack(*enemy_);
+                validChoice = true;
+                break;
+            case 2:
+                player_->useAbility(*enemy_);
+                validChoice = true;
+                break;
+            case 3:
+                accessInventory();
+                // If player chooses to heal then validChoice is true.
+                if (playerHealed_) {
+                    validChoice = true;
+                }
+                break;
+            default:
+                std::cout << "Invalid choice. Try again.\n";
+                break;
+            }
+        }
+        else {
+            // If player is on cooldown.
+            std::cout << "\nYour turn:\n";
+            std::cout << "1. Attack\n" << "2. Access Inventory\n";
+            choice = safeInputInt();    // Use safeInputInt() to get user input
+
+            switch (choice) {
+            case 1:
+                player_->attack(*enemy_);
+                validChoice = true;
+                break;
+            case 2:
+                accessInventory();
+                // If player chooses to heal then validChoice is true.
+                if (playerHealed_) {
+                    validChoice = true;
+                }
+                break;
+            default:
+                std::cout << "Invalid choice. Try again.\n";
+                break;
+            }
+        }
+    }
+
+    // Decrement the player's cooldown if it's greater than 0.
+    if (player_->getCoolDown() > 0) {
+        player_->setCoolDown(player_->getCoolDown() - 1);
+    }
+    // Reset playerHealed_ to false after player turn.
+    playerHealed_ = false;
+}
+
+// Method to access to access the Inventory and ask the player what they would like to do inside the inventory.
+void CombatSystem::accessInventory() {
+    bool hasConsumableItems = player_->hasConsumableItems();
+    int choice = 0;
+    bool validChoice = false;
+
+    while (!validChoice) {
+        std::cout << "\nSelect 1 of the following options.\n";
+        // If player has consumable items
+        if (hasConsumableItems) {
+            std::cout << "1. Heal.\n";
+        }
+        std::cout << "2. Equip Item.\n";
+        std::cout << "3. Unequip Item.\n";
+        
+        choice = safeInputInt(); // Use safeInputInt() to get user input
+
+        switch (choice) {
+        case 1:
+            // If player has consumable items
+            if (hasConsumableItems) {
+                // Player heal option.
+                player_->heal();
+                // Player choose to heal and this function says the playerHealed_ to true.
+                playerHealed();
+                validChoice = true;
+            }
+            // If player does not have any consumable items.
+            else {
+                std::cout << "Invalid choice. Try again.\n";
+            }
+
+            break;
+        case 2:
+            // Player equip item option.
+            player_->equipItem();
+            validChoice = true;
+            break;
+        case 3:
+            // Player unequip item option.
+            player_->unequippedItem();
+            validChoice = true;
+            break;
+        default:
+            std::cout << "Invalid choice. Try again.\n";
+            break;
+        }
+    }
+}
+
+// Method sets the playerHealed_ to true if the player chooses to heal.
+void CombatSystem::playerHealed() {
+    playerHealed_ = true;
+}
+
+int CombatSystem::safeInputInt() {
+    int input;
+    std::cin >> input;
+
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    return input;
 }
 
