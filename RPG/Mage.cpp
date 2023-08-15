@@ -5,7 +5,7 @@ Mage::Mage(double attackPower, double defense, double health, const std::string&
 
 
 // Method to simulate mage attacking with is special Ability at a Character Target.
-void Mage::useAbility(Character& target) {
+void Mage::useAbility(Enemy& target) {
 	// useAbility is only able to be used every 3 turns.
 	if (getCoolDown() == 0) {
 		setCoolDown(3);

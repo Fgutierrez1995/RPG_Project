@@ -5,9 +5,11 @@
 #include <memory>
 #include <iostream>
 #include "Item.h"
+#include "Enemy.h"
 
 
-class Item; // Forward declaration.
+class Item;		// Forward declaration.
+class Enemy;	// Forward declaration.
 
 class Character {
 public:
@@ -32,7 +34,7 @@ public:
 	virtual ~Character() = default;
 
 	// Pure Virtual functions for common character actions.
-	virtual void useAbility(Character& target) = 0;
+	virtual void useAbility(Enemy& target) = 0;
 	virtual void displayInfo() const = 0;
 
 	/*
@@ -116,13 +118,13 @@ public:
 	static int getRandomNumber(int min, int max);
 
 	/** @breif Method to determine how hard the character hits. */ 
-	double damageGiven(Character& target);
+	double damageGiven(Enemy& target);
 
 	/*
 	* @brief Method to simulate a character object attacking a character target.
 	* @parmas target The character target that is under attack.
 	*/
-	void attack(Character& target);
+	void attack(Enemy& target);
 
 	/** @brief Method is used to level up the character object. This method increased the character attack, defense, combat, health level.*/
 	void levelUp();

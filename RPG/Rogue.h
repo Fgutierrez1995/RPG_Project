@@ -26,7 +26,7 @@ public:
 	* @brief Method to simulate a Rogue object using his special ability on a Character target.
 	* @parmas target The character target that is under attack.
 	*/
-	virtual void useAbility(Character& target) override;
+	virtual void useAbility(Enemy& target) override;
 
 
 	/** @brief Method to display all the rogue levels. */

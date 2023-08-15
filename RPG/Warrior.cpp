@@ -4,7 +4,7 @@ Warrior::Warrior(double attackPower, double defense, double health, const std::s
 	Character(attackPower, defense, health, name) {}
 
 // Method to simulate Warrior attacking with is special Ability at a Character Target.
-void Warrior::useAbility(Character& target) {
+void Warrior::useAbility(Enemy& target) {
 	// useAbility is only able to be used every 3 turns.
 	if (getCoolDown() == 0) {
 		setCoolDown(3);
