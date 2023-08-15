@@ -32,7 +32,7 @@ int Character::getRandomNumber(int min, int max) {
 }
 
 // Method to determine the attack damage given
-double Character::damageGiven(Character& target) {
+double Character::damageGiven(Enemy& target) {
 	// Get a random number between 0 and 100.
 	int randomNumber = getRandomNumber(0, 100);
 	// Turn the random number into a fraction.
@@ -44,7 +44,7 @@ double Character::damageGiven(Character& target) {
 }
 
 // Method to simulate character attacking another character Target.
-void Character::attack(Character& target) {
+void Character::attack(Enemy& target) {
 	double damage = damageGiven(target);
 	std::cout << "\n" << getName() << " attacked " << target.getName() << "!\n";
 	std::cout << target.getName() << " was damaged by " << damage << "!!\n\n";

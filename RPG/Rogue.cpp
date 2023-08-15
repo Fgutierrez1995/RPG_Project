@@ -4,7 +4,7 @@ Rogue::Rogue(double attackPower, double defense, double health, const std::strin
 	Character(attackPower, defense, health, name) {}
 
 // Method to simulate rogue attacking with is special Ability at a Character Target.
-void Rogue::useAbility(Character& target) {
+void Rogue::useAbility(Enemy& target) {
 	// useAbility is only able to be used every 3 turns.
 	if (getCoolDown() == 0) {
 		setCoolDown(3);

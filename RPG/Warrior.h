@@ -27,7 +27,7 @@ public:
 	* @brief Method to simulate a Warrior object using his special ability on a Character target.
 	* @parmas target The character target that is under attack.
 	*/
-	virtual void useAbility(Character& target) override;
+	virtual void useAbility(Enemy& target) override;
 
 	/** @brief Method to display all the Warrior levels. */
 	virtual void displayInfo() const override;
