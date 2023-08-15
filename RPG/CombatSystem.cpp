@@ -18,8 +18,10 @@ void CombatSystem::startBattle() {
 
     // Loop runs while both player and enemy are alive.
     while (!battleOver()) {
+        std::cout << "\n***** Player Turn *****\n";
         playerTurn();
         if (enemy_->isAlive()) {
+            std::cout << "\n***** Enemy Turn *****\n";
             enemyTurn();
         }
     }
@@ -68,12 +70,12 @@ void CombatSystem::enemyTurn() {
         if (enemyAttackPower > playerHealth) {
             enemy_->useAbility(*player_);
         }
-        // 70% chance the enemy will choose to attack instead of using its special ability.
-        if (randomNum < 70) {
-            enemy_->attack(*player_);
+        // 40% chance the enemy will choose to use ability instead of attacking with normal attack.
+        else if (randomNum < 40) {
+            enemy_->useAbility(*player_);
         }
         else {
-            enemy_->useAbility(*player_);
+            enemy_->attack(*player_);
         }
     }
     // If the enemy is on cooldown, decide whether to attack or heal.
