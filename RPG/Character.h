@@ -36,6 +36,7 @@ public:
 	// Pure Virtual functions for common character actions.
 	virtual void useAbility(Enemy& target) = 0;
 	virtual void displayInfo() const = 0;
+	virtual std::string getClassType() const = 0;
 
 	/*
 	* @breif Sets the health of the character.

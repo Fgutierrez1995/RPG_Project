@@ -24,3 +24,6 @@ void Warrior::displayInfo() const {
 	std::cout << getName() << " Combat Level: " << getCombatLevel() << std::endl;
 	std::cout << getName() << " Total Experience: " << getExperience() << std::endl << std::endl;
 }
+
+// Getter method to return the classType_.
+std::string Warrior::getClassType() const { return classType_; }
