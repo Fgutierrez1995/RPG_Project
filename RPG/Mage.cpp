@@ -28,3 +28,6 @@ void Mage::displayInfo() const {
 	std::cout << getName() << " Combat Level: " << getCombatLevel() << std::endl;
 	std::cout << getName() << " Total Experience: " << getExperience() << std::endl << std::endl;
 }
+
+// Getter methdo to return the classType_.
+std::string Mage::getClassType() const { return classType_; }

@@ -31,6 +31,9 @@ public:
 	/** @brief Method to display all the mage levels. */
 	virtual void displayInfo() const override;
 
-private:
+	/** @breif Getter method to return the classType of the character. */
+	virtual std::string getClassType() const override;
 
+private:
+	std::string classType_ = "Mage";
 };

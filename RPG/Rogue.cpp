@@ -25,3 +25,6 @@ void Rogue::displayInfo() const {
 	std::cout << getName() << " Combat Level: " << getCombatLevel() << std::endl;
 	std::cout << getName() << " Total Experience: " << getExperience() << std::endl << std::endl;
 }
+
+// Getter Method to return classType_.
+std::string Rogue::getClassType() const { return classType_; }
